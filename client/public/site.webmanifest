@@ -1,0 +1,10 @@
+{
+  "name": "Ayush Rai — Full Stack Developer (MERN)",
+  "short_name": "Ayush Rai",
+  "description": "Full Stack Developer (MERN) building performant, secure, end-to-end web applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1120",
+  "theme_color": "#0b1120",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
