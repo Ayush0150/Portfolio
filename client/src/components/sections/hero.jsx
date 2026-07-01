@@ -108,7 +108,7 @@ export function Hero() {
             {heroHighlights.map((h) => (
               <li
                 key={h.label}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
               >
                 <span className="text-faint">{h.label}: </span>
                 <span className="font-medium text-foreground">{h.value}</span>
