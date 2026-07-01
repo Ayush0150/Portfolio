@@ -7,6 +7,7 @@ export const projects = [
     year: "2026",
     accent: "#3b82f6",
     featured: true,
+    image: "/eduguard.jpg",
     description:
       "A full-stack IoT platform streaming real-time classroom telemetry — attendance, gas and device health — with automated multi-channel alerting.",
     overview:
@@ -39,7 +40,6 @@ export const projects = [
       "Built a secure backend with JWT authentication & authorization, role-based access control, admin email-OTP two-factor (email OTP), bcrypt hashing, rate limiting and input validation.",
       "Designed a React dashboard with real-time state management for remote device configuration and analytics exportable to PDF, Excel, CSV and JSON.",
     ],
-    gallery: ["Live dashboard", "Telemetry stream", "Alerts & device config"],
     stack: [
       "React",
       "Node.js",
@@ -52,6 +52,7 @@ export const projects = [
       "Tailwind CSS",
       "Render",
     ],
+    liveUrl: "https://eduguard-web.onrender.com/login",
     githubUrl: "https://github.com/Ayush0150",
   },
   {
@@ -62,6 +63,7 @@ export const projects = [
     year: "2025",
     accent: "#06b6d4",
     featured: true,
+    image: "/wonderlust.jpg",
     description:
       "A scalable travel-listing application with interactive maps, image uploads and full CRUD across listings and reviews.",
     overview:
@@ -90,7 +92,6 @@ export const projects = [
       "Integrated interactive map visualizations using Leaflet.js and the OpenStreetMap API to display geolocated listings.",
       "Designed RESTful APIs supporting full CRUD for listings and reviews, with image uploads handled through Cloudinary.",
     ],
-    gallery: ["Map explorer", "Listing detail", "Reviews & ratings"],
     stack: [
       "Node.js",
       "Express",
@@ -102,6 +103,7 @@ export const projects = [
       "MVC",
       "Render",
     ],
+    liveUrl: "https://wonderlust-v1cv.onrender.com/listings",
     githubUrl: "https://github.com/Ayush0150",
   },
 ];

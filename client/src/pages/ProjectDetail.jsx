@@ -150,23 +150,6 @@ export function ProjectDetail() {
             </div>
           </Block>
 
-          <div className="mt-12">
-            <SectionLabel>Gallery</SectionLabel>
-            <div className="mt-5 grid gap-4 sm:grid-cols-3">
-              {project.gallery.map((label) => (
-                <ImageFrame
-                  key={label}
-                  project={project}
-                  label={label}
-                  className="aspect-[4/3]"
-                />
-              ))}
-            </div>
-            <p className="mt-3 font-mono text-xs text-faint">
-              Placeholder previews — drop real screenshots in to replace.
-            </p>
-          </div>
-
           <div className="mt-20 border-t border-white/5 pt-10">
             <Link
               to={`/projects/${next.slug}`}
@@ -250,6 +233,21 @@ function ListCard({ icon: Icon, title, items, accent }) {
 }
 
 function ImageFrame({ project, label, className, big = false }) {
+  if (project.image) {
+    return (
+      <div
+        className={`group relative overflow-hidden rounded-2xl border border-white/10 ${className ?? ""}`}
+      >
+        <img
+          src={project.image}
+          alt={`${project.title} — ${project.tagline}`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`group relative overflow-hidden rounded-2xl border border-white/10 ${className ?? ""}`}

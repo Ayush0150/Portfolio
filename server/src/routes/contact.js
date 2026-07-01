@@ -1,7 +1,5 @@
 import { Router } from "express";
-import mongoose from "mongoose";
 import { z } from "zod";
-import { Message } from "../models/Message.js";
 
 const router = Router();
 
@@ -12,7 +10,7 @@ const schema = z.object({
 });
 
 // Lightweight in-memory rate limit: 5 submissions per 15 min per IP.
-// Guards the DB write + Resend send from bot spam without adding a dependency.
+// Guards the Resend send from bot spam without adding a dependency.
 // Requires `app.set("trust proxy", ...)` upstream so req.ip is the real client IP.
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 5;
@@ -51,20 +49,9 @@ router.post("/", rateLimit, async (req, res) => {
   }
 
   const { name, email, message } = parsed.data;
-  let saved = false;
   let emailed = false;
 
-  // 1. Persist to MongoDB (if connected)
-  if (mongoose.connection.readyState === 1) {
-    try {
-      await Message.create({ name, email, message });
-      saved = true;
-    } catch (err) {
-      console.error("[contact] DB save failed:", err.message);
-    }
-  }
-
-  // 2. Send notification email (if Resend is configured)
+  // Send notification email (if Resend is configured)
   if (process.env.RESEND_API_KEY) {
     try {
       const { Resend } = await import("resend");
@@ -82,8 +69,8 @@ router.post("/", rateLimit, async (req, res) => {
     }
   }
 
-  if (saved || emailed) {
-    return res.json({ ok: true, saved, emailed });
+  if (emailed) {
+    return res.json({ ok: true, emailed });
   }
 
   // Nothing configured → let the client fall back to a mailto link.

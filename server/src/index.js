@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./config/db.js";
 import contactRouter from "./routes/contact.js";
 
 const app = express();
@@ -26,8 +25,6 @@ app.use("/api/contact", contactRouter);
 
 const PORT = process.env.PORT || 5050;
 
-connectDB(process.env.MONGODB_URI).finally(() => {
-  app.listen(PORT, () =>
-    console.log(`[server] Listening on http://localhost:${PORT}`),
-  );
-});
+app.listen(PORT, () =>
+  console.log(`[server] Listening on http://localhost:${PORT}`),
+);

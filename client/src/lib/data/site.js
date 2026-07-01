@@ -20,7 +20,7 @@ export const siteConfig = {
   description:
     "Ayush Rai is a Full Stack Developer (MERN) based in Mumbai, India — building responsive, production-ready web applications with React, Node.js, Express and MongoDB.",
   url: "https://ayushrai.dev",
-  resume: "/Ayush_Rai_Resume.pdf",
+  resume: "/Resume.pdf",
   githubUser: "Ayush0150",
   availability: "Open to full-time roles",
   responseTime: "Usually replies within 24 hours",

@@ -2,7 +2,7 @@
   "name": "ayush-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Ayush Rai — Full Stack Developer (MERN) portfolio. MERN monorepo (Vite React client + Express/MongoDB server).",
+  "description": "Ayush Rai — Full Stack Developer (MERN) portfolio. Vite React client + Express API server.",
   "scripts": {
     "install:all": "npm install --prefix client && npm install --prefix server",
     "dev:client": "npm run dev --prefix client",

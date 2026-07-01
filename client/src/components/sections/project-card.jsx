@@ -9,82 +9,100 @@ export function ProjectCard({ project, index }) {
 
   return (
     <TiltCard className="group h-full rounded-3xl" max={6}>
-      <div className="relative flex h-full flex-col overflow-hidden rounded-3xl glass p-8 transition-colors duration-300 hover:border-white/15">
-        {/* Spotlight glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full opacity-0 blur-[90px] transition-opacity duration-500 group-hover:opacity-25"
-          style={{ backgroundColor: project.accent }}
-        />
+      <div className="relative flex h-full flex-col overflow-hidden rounded-3xl glass transition-colors duration-300 hover:border-white/15">
+        {project.image && (
+          <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden">
+            <img
+              src={project.image}
+              alt={`${project.title} — ${project.tagline}`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            {/* Fade the screenshot into the card so the crop reads as intentional */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-card to-transparent"
+            />
+          </div>
+        )}
 
-        <div className="relative flex items-center justify-between font-mono text-xs text-faint">
-          <span>0{index + 1}</span>
-          <span>
-            {project.year} · {project.role}
-          </span>
-        </div>
+        <div className="relative flex flex-1 flex-col p-8">
+          {/* Spotlight glow — sits in the content area so the cover image never hides it */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-16 -right-16 size-56 rounded-full opacity-0 blur-[90px] transition-opacity duration-500 group-hover:opacity-25"
+            style={{ backgroundColor: project.accent }}
+          />
 
-        <h3 className="relative mt-6 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-          {project.title}
-        </h3>
-        <p
-          className="relative mt-1.5 text-sm font-medium"
-          style={{ color: project.accent }}
-        >
-          {project.tagline}
-        </p>
-        <p className="relative mt-4 text-sm leading-relaxed text-muted">
-          {project.description}
-        </p>
-
-        <div className="relative mt-6 flex flex-wrap gap-2">
-          {visibleStack.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted"
-            >
-              {tech}
+          <div className="relative flex items-center justify-between font-mono text-xs text-faint">
+            <span>0{index + 1}</span>
+            <span>
+              {project.year} · {project.role}
             </span>
-          ))}
-          {extra > 0 && (
-            <span className="rounded-full border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-faint">
-              +{extra}
-            </span>
-          )}
-        </div>
+          </div>
 
-        <div className="relative mt-8 flex items-center gap-3 pt-2">
-          <Link
-            to={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
+          <h3 className="relative mt-6 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+            {project.title}
+          </h3>
+          <p
+            className="relative mt-1.5 text-sm font-medium"
+            style={{ color: project.accent }}
           >
-            Case study
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+            {project.tagline}
+          </p>
+          <p className="relative mt-4 text-sm leading-relaxed text-muted">
+            {project.description}
+          </p>
 
-          <div className="ml-auto flex items-center gap-2">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={`${project.title} live demo`}
-                className="grid size-10 place-items-center rounded-full glass text-muted transition-colors hover:text-foreground"
+          <div className="relative mt-6 flex flex-wrap gap-2">
+            {visibleStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted"
               >
-                <ExternalLink className="size-4" />
-              </a>
+                {tech}
+              </span>
+            ))}
+            {extra > 0 && (
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-faint">
+                +{extra}
+              </span>
             )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={`${project.title} source`}
-                className="grid size-10 place-items-center rounded-full glass text-muted transition-colors hover:text-foreground"
-              >
-                <FiGithub className="size-4" />
-              </a>
-            )}
+          </div>
+
+          <div className="relative mt-8 flex items-center gap-3 pt-2">
+            <Link
+              to={`/projects/${project.slug}`}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
+            >
+              Case study
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+
+            <div className="ml-auto flex items-center gap-2">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label={`${project.title} live demo`}
+                  className="grid size-10 place-items-center rounded-full glass text-muted transition-colors hover:text-foreground"
+                >
+                  <ExternalLink className="size-4" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label={`${project.title} source`}
+                  className="grid size-10 place-items-center rounded-full glass text-muted transition-colors hover:text-foreground"
+                >
+                  <FiGithub className="size-4" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
